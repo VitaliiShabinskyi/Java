@@ -22,8 +22,8 @@ public class HomeWork {
         text1();
         text2();
 
-        System.out.println("***********************");
-        ArrayList<Colors> colors = new ArrayList<>();
+        System.out.println("********* 1 ***********");
+        MyArrayList<Colors> colors = new MyArrayList<>();
 
         Colors red = new Colors("Red", "#FF0000");
         colors.add(red);
@@ -34,6 +34,21 @@ public class HomeWork {
 
         System.out.println("Index of Color Green: " + colors.indexOf(blue));
         System.out.println("Цвет: " + colors.get(1).name + "\tRGB: " + colors.get(1).rgb);
+
+
+        System.out.println("********* 2 ***********");
+
+        AccessModifiersDemo obj = new AccessModifiersDemo();
+        obj.publicField = 1;
+        obj.protectedField = 2;
+        obj.packagePrivateField = 3;
+        // obj.privateField = 4; // Не доступно из-за модификатора private
+
+        obj.publicMethod();
+        obj.protectedMethod();
+        obj.packagePrivateMethod();
+        // obj.privateMethod(); // Не доступно из-за модификатора private
+
     }
 
     public static double summ(double a, double b) {
