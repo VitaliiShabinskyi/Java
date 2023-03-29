@@ -15,7 +15,7 @@ public class ArrayStatic {
             return;
         }
         for (int i = 0; i < array.length; i++) {
-            System.out.printf(array[i] + " ");
+            System.out.print(array[i] + " ");
         }
         System.out.println();
     }

@@ -13,9 +13,9 @@ import java.util.Random;
  */
 
 public class HomeWork {
-    static ArrayStatic[] array = new ArrayStatic[10];
+//    static ArrayStatic[] array = new ArrayStatic[10];
     static Random random = new Random();
-    public ArrayNonStatic[] array2 = new ArrayNonStatic[10];
+//    public ArrayNonStatic[] array2 = new ArrayNonStatic[10];
     public static void main(String[] args) {
         Animal cat = new Animal(3, 2.5, "Барсик");
         cat.out();
@@ -36,7 +36,7 @@ public class HomeWork {
         System.out.println("Max: " + ArrayStatic.findMax());
         System.out.println("Min: " + ArrayStatic.findMin());
         ArrayStatic.sortArray();
-        System.out.printf("Sort => out: ");
+        System.out.print("Sort => out: ");
         ArrayStatic.out();
 
         System.out.println("********* 2 - Non Static **********");
@@ -52,7 +52,7 @@ public class HomeWork {
         System.out.println("Min: " + array2.findMin());
 
         array2.sortArray();
-        System.out.printf("Sort => out: ");
+        System.out.print("Sort => out: ");
         array2.out();
 
     }
