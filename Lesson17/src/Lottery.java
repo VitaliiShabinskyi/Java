@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -5,8 +6,8 @@ public class Lottery {
     // Поля класса
     private Scanner scan = new Scanner(System.in);                                                  // Переменная для чтения из консоли
     private Random rand = new Random();                                                             // Переменная для генерации псевдослучайного числа
-    private int[] winArray = new int[5];                                                            // Создаем массив из 5 элементов, в который запишем выигрышную комбинацию
-    private int[] userArray = new int[5];                                                           // Создаем массив из 5 элементов, в который запишем комбинацию пользователя
+    private int[] winArray = new int[6];                                                            // Создаем массив из 5 элементов, в который запишем выигрышную комбинацию
+    private int[] userArray = new int[6];                                                           // Создаем массив из 5 элементов, в который запишем комбинацию пользователя
     private int bound;                                                                              // Переменная для указания диапазона чисел в последовательности
     private int countPositions = 0;                                                                 // Переменная для подсчета угаданных позиций числа
 
@@ -16,8 +17,15 @@ public class Lottery {
      */
     public void generateWinCombination(int bound) {
         for (int i = 0; i < winArray.length; i++){                                               // Цикл для генерации чисел выигрышной комбинации
-            winArray[i] = rand.nextInt(bound);                                                   // присвоение случайного значения каждому элементу массива
+            int random = rand.nextInt(1, bound);
+            if (searchInArray(winArray, random)) {
+                i--;
+            } else {
+                winArray[i] = random;                                          // присвоение случайного значения каждому элементу массива
+            }
+
         }
+        Arrays.sort(winArray);
         this.bound = bound;                                                                      // this.bound  ссылается на поле bound и присваивает ему локальную переменную bound
     }
 
@@ -25,10 +33,21 @@ public class Lottery {
      * Метод для ввода комбинации пользователя
      */
     public void userCombination(){
-        System.out.println("Введите 5 чисел в диапазоне от 0 до " + bound);
+        System.out.println("Введите 6 чисел в диапазоне от 1 до " + bound);
         for (int i = 0; i < userArray.length; i++) {
-            userArray[i] = scan.nextInt();
+            System.out.print("Число №" + (i+1) + ": ");
+            int input = scan.nextInt();
+            if (input < 1 || input > bound) {
+                System.out.println("Вы ввели некорректное число");
+                i--;
+            } else if (searchInArray(userArray, input)) {
+                System.out.println("Вы уже ввели такое число");
+                i--;
+            } else {
+                userArray[i] = input;
+            }
         }
+        Arrays.sort(userArray);
     }
 
     /**
@@ -36,10 +55,27 @@ public class Lottery {
      */
     public void checkCombination(){
         for (int i = 0; i < winArray.length; i++) {
-            if(winArray[i] == userArray[i]){
-                countPositions++;
+            for (int j = 0; j < userArray.length; j++) {
+                if(winArray[i] == userArray[j]){
+                    countPositions++;
+                }
             }
         }
+    }
+
+    /**
+     * Проверка чисел на дубли
+     * @param arr массив
+     * @param value число
+     * @return boolean
+     */
+    private boolean searchInArray(int[] arr, int value) {
+        for (int i = 0; i < arr.length; i++) {
+            if (value == arr[i]) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -49,7 +85,7 @@ public class Lottery {
         for (int i = 0; i < winArray.length; i++) {
             System.out.print(winArray[i] + " ");
         }
-        System.out.println();
+        System.out.println("\n");
     }
 
     /**
