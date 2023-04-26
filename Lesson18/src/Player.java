@@ -14,7 +14,6 @@ public class Player {
             } else {
                 System.out.println(cards[i].toString());
             }
-
         }
     }
 

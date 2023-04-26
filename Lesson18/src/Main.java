@@ -39,6 +39,5 @@ public class Main {
 
         System.out.println("\nКолода Маши:");
         masha.displayCards();
-
     }
 }

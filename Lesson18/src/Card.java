@@ -13,4 +13,5 @@ public class Card {
         return "Масть: " + suit +
                 " \tДостоинство: " + value;
     }
+
 }

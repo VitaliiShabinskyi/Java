@@ -8,7 +8,7 @@ public class Deck {
     private int bound = 0;
 
     private Random random = new Random();
-    private int[] position = new int[24];
+//    private int[] position = new int[24];
 
     private Card[] player1 = new Card[6];
     private Card[] player2 = new Card[6];
